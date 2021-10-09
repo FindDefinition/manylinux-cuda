@@ -6,6 +6,7 @@ on:
       - "manylinux/cu114/*.Dockerfile"
       - "manylinux/cu111/*.Dockerfile"
       - "manylinux/cu102/*.Dockerfile"
+      - ".github/workflows/build.yaml"
 
 jobs:
   build-dev:
