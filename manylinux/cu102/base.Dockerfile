@@ -18,11 +18,13 @@ ENV CUDA_VERSION 10.2
 # For libraries in the cuda-compat-* package: https://docs.nvidia.com/cuda/eula/index.html#attachment-a
 RUN yum upgrade -y && yum install -y \
     cuda-cudart-10-2-${NV_CUDA_CUDART_VERSION} \
-    cuda-compat-10-2 \
+    cuda-compat-10-2 devtoolset-7 \
     && ln -s cuda-10.2 /usr/local/cuda \
     && yum clean all \
     && rm -rf /var/cache/yum/*
-
+# install gcc-7 because default manylinux use gcc-10
+RUN echo "source scl_source enable devtoolset-7" >> /etc/bashrc
+RUN source /etc/bashrc
 # nvidia-docker 1.0
 RUN echo "/usr/local/nvidia/lib" >> /etc/ld.so.conf.d/nvidia.conf && \
     echo "/usr/local/nvidia/lib64" >> /etc/ld.so.conf.d/nvidia.conf
