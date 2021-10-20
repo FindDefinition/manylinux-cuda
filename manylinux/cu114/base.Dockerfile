@@ -17,10 +17,12 @@ ENV CUDA_VERSION 11.4.2
 # For libraries in the cuda-compat-* package: https://docs.nvidia.com/cuda/eula/index.html#attachment-a
 RUN yum upgrade -y && yum install -y \
     cuda-cudart-11-4-${NV_CUDA_CUDART_VERSION} \
-    cuda-compat-11-4 \
+    cuda-compat-11-4 devtoolset-9 \
     && ln -s cuda-11.4 /usr/local/cuda \
     && yum clean all \
     && rm -rf /var/cache/yum/*
+RUN echo "source scl_source enable devtoolset-9" >> /etc/bashrc
+RUN source /etc/bashrc
 
 # nvidia-docker 1.0
 RUN echo "/usr/local/nvidia/lib" >> /etc/ld.so.conf.d/nvidia.conf && \
