@@ -19,7 +19,7 @@ jobs:
       DOCKER_IMAGE_NAME: manylinux2014-cuda:cu${{ matrix.cuda-version }}
       BASE_DOCKER_FILE_PATH: "manylinux/cu${{ matrix.cuda-version }}/base.Dockerfile"
       DEV_DOCKER_FILE_PATH: "manylinux/cu${{ matrix.cuda-version }}/devel.Dockerfile"
-
+      VERSION: "1.0.0"
     steps:
       - uses: actions/checkout@master
       - name: Build Docker
@@ -35,4 +35,4 @@ jobs:
 
       - name: Publish to Registry
         run: |
-          docker push ${{env.HUB_DOCKER_IMAGE_NAME}}-devel
+          docker push ${{env.HUB_DOCKER_IMAGE_NAME}}-devel-${{ env.VERSION }}
