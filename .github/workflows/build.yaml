@@ -5,6 +5,8 @@ on:
     paths:
       - "manylinux/cu114/*.Dockerfile"
       - "manylinux/cu111/*.Dockerfile"
+      - "manylinux/cu113/*.Dockerfile"
+      - "manylinux/cu115/*.Dockerfile"
       - "manylinux/cu102/*.Dockerfile"
       - ".github/workflows/build.yaml"
 
@@ -13,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        cuda-version: ['102', '111', '114']
+        cuda-version: ['102', '111', '114', '113', '115']
     env:
       HUB_DOCKER_IMAGE_NAME: scrin/manylinux2014-cuda:cu${{ matrix.cuda-version }}
       DOCKER_IMAGE_NAME: manylinux2014-cuda:cu${{ matrix.cuda-version }}
