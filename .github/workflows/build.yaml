@@ -9,6 +9,8 @@ on:
       - "manylinux/cu115/*.Dockerfile"
       - "manylinux/cu102/*.Dockerfile"
       - ".github/workflows/build.yaml"
+  schedule:
+    - cron: '0 0 1 * *' # run on every month
 
 jobs:
   build-dev:
