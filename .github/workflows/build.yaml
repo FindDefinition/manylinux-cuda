@@ -3,8 +3,8 @@ name: build
 on:
   push:
     paths:
+      - "manylinux/cu117/*.Dockerfile"
       - "manylinux/cu114/*.Dockerfile"
-      - "manylinux/cu111/*.Dockerfile"
       - "manylinux/cu113/*.Dockerfile"
       - "manylinux/cu115/*.Dockerfile"
       - "manylinux/cu102/*.Dockerfile"
