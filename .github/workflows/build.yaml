@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "manylinux/cu117/*.Dockerfile"
+      - "manylinux/cu110/*.Dockerfile"
       - "manylinux/cu114/*.Dockerfile"
       - "manylinux/cu113/*.Dockerfile"
       - "manylinux/cu115/*.Dockerfile"
@@ -17,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        cuda-version: ['102', '114', '113', '115', '117']
+        cuda-version: ['102', '114', '113', '115', '117', '118']
     env:
       HUB_DOCKER_IMAGE_NAME: scrin/manylinux2014-cuda:cu${{ matrix.cuda-version }}
       DOCKER_IMAGE_NAME: manylinux2014-cuda:cu${{ matrix.cuda-version }}
