@@ -23,7 +23,7 @@ RUN yum upgrade -y && yum install -y \
     && yum clean all \
     && rm -rf /var/cache/yum/*
 
-RUN echo "source scl_source enable devtoolset-9" >> /etc/bashrc
+RUN echo "source scl_source enable devtoolset-11" >> /etc/bashrc
 RUN source /etc/bashrc
 
 # nvidia-docker 1.0
