@@ -1,0 +1,36 @@
+FROM manylinux2014-cuda:cu121-runtime as base
+
+FROM base as base-amd64
+
+ENV NV_CUDA_LIB_VERSION 12.1.1-1
+ENV NV_NVPROF_VERSION 12.1.105-1
+ENV NV_NVPROF_DEV_PACKAGE cuda-nvprof-12-1-${NV_NVPROF_VERSION}
+ENV NV_CUDA_CUDART_DEV_VERSION 12.1.105-1
+ENV NV_NVML_DEV_VERSION 12.1.105-1
+ENV NV_LIBCUBLAS_DEV_VERSION 12.1.3.1-1
+ENV NV_LIBNPP_DEV_VERSION 12.1.0.40-1
+ENV NV_LIBNPP_DEV_PACKAGE libnpp-devel-12-1-${NV_LIBNPP_DEV_VERSION}
+ENV NV_LIBNCCL_DEV_PACKAGE_NAME libnccl-devel
+ENV NV_LIBNCCL_DEV_PACKAGE_VERSION 2.17.1-1
+ENV NCCL_VERSION 2.17.1
+ENV NV_LIBNCCL_DEV_PACKAGE ${NV_LIBNCCL_DEV_PACKAGE_NAME}-${NV_LIBNCCL_DEV_PACKAGE_VERSION}+cuda12.1
+
+
+LABEL maintainer "NVIDIA CORPORATION <sw-cuda-installer@nvidia.com>"
+
+RUN yum install -y \
+    make \
+    cuda-command-line-tools-12-1-${NV_CUDA_LIB_VERSION} \
+    cuda-libraries-devel-12-1-${NV_CUDA_LIB_VERSION} \
+    cuda-minimal-build-12-1-${NV_CUDA_LIB_VERSION} \
+    cuda-cudart-devel-12-1-${NV_CUDA_CUDART_DEV_VERSION} \
+    ${NV_NVPROF_DEV_PACKAGE} \
+    cuda-nvml-devel-12-1-${NV_NVML_DEV_VERSION} \
+    libcublas-devel-12-1-${NV_LIBCUBLAS_DEV_VERSION} \
+    ${NV_LIBNPP_DEV_PACKAGE} \
+    ${NV_LIBNCCL_DEV_PACKAGE} \
+    && yum clean all \
+    && rm -rf /var/cache/yum/*
+
+ENV LIBRARY_PATH /usr/local/cuda/lib64/stubs
+
