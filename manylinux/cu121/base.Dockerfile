@@ -21,7 +21,7 @@ ENV CUDA_VERSION 12.1.1
 # devtoolset-11
 RUN yum upgrade -y && yum install -y \
     cuda-cudart-12-1-${NV_CUDA_CUDART_VERSION} \
-    cuda-compat-12-1 \
+    cuda-compat-12-1 devtoolset-11 \
     && yum clean all \
     && rm -rf /var/cache/yum/*
 
