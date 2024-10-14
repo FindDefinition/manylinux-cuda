@@ -30,7 +30,8 @@ RUN yum install -y \
     cuda-nvml-devel-12-4-${NV_NVML_DEV_VERSION} \
     libcublas-devel-12-4-${NV_LIBCUBLAS_DEV_VERSION} \
     ${NV_LIBNPP_DEV_PACKAGE} \
-    ${NV_LIBNCCL_DEV_PACKAGE} \
+    # glibc version too high
+    # ${NV_LIBNCCL_DEV_PACKAGE} \ 
     ${NV_CUDA_NSIGHT_COMPUTE_DEV_PACKAGE} \
     && yum clean all \
     && rm -rf /var/cache/yum/*
