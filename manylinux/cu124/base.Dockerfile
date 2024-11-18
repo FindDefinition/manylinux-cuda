@@ -15,7 +15,7 @@ RUN NVIDIA_GPGKEY_SUM=d0664fbbdb8c32356d45de36c5984617217b2d0bef41b93ccecd326ba3
 ENV CUDA_VERSION 12.4.1
 
 # For libraries in the cuda-compat-* package: https://docs.nvidia.com/cuda/eula/index.html#attachment-a
-RUN yum upgrade -y && yum install -y \
+RUN yum upgrade -y && yum install -y --nobest \
     cuda-cudart-12-4-${NV_CUDA_CUDART_VERSION} \
     cuda-compat-12-4 \
     && yum clean all \

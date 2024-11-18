@@ -19,7 +19,7 @@ ENV NV_CUDA_NSIGHT_COMPUTE_DEV_PACKAGE cuda-nsight-compute-12-6-${NV_CUDA_NSIGHT
 
 LABEL maintainer "NVIDIA CORPORATION <sw-cuda-installer@nvidia.com>"
 
-RUN yum install -y \
+RUN yum install -y --nobest \
     make \
     findutils \
     cuda-command-line-tools-12-6-${NV_CUDA_LIB_VERSION} \
