@@ -17,7 +17,7 @@ ENV CUDA_VERSION 12.4.1
 # For libraries in the cuda-compat-* package: https://docs.nvidia.com/cuda/eula/index.html#attachment-a
 RUN yum upgrade -y && yum install -y --nobest \
     cuda-cudart-12-4-${NV_CUDA_CUDART_VERSION} \
-    cuda-compat-12-4 \
+    cuda-compat-12-4 devtoolset-13 \
     && yum clean all \
     && rm -rf /var/cache/yum/*
 
