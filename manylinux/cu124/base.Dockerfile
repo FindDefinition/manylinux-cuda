@@ -20,7 +20,9 @@ RUN yum upgrade -y && yum install -y --nobest \
     cuda-compat-12-4 gcc-toolset-13 \
     && yum clean all \
     && rm -rf /var/cache/yum/*
-
+# install gcc-13 because default manylinux use gcc-14
+RUN echo "source scl_source enable gcc-toolset-13" >> /etc/bashrc
+RUN source /etc/bashrc
 # nvidia-docker 1.0
 RUN echo "/usr/local/nvidia/lib" >> /etc/ld.so.conf.d/nvidia.conf && \
     echo "/usr/local/nvidia/lib64" >> /etc/ld.so.conf.d/nvidia.conf
